@@ -5,7 +5,7 @@
 
 This repository contains the codes to 1. generate a SIRD epidemic model, 2. uncover the reported delay for real data or generated synthetic data and 3. plot the evidence for reporting delays, which is described in the paper [Reporting delays: a widely neglecting impact factor in COVID-19 forecasts](https://arxiv.org/abs/2304.11863). If you use these codes, please cite the original paper and this repository. There are 6 main files in the repository:
 1. polyapdf.m:
-Neyman type A probability density function
+Polya-Aeppli probability density function
 2. odefcn.m:
 dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of an SIRD epidemic model
 3. infer_reporting_delays_realdata.m:
@@ -72,17 +72,26 @@ gammam=0.05;
 N=1;
 tspan=0:0.1:100;
 y0=[99990/100000,10/100000,0,0];
-[t,y]=ode45(@(t,y) odefcn(y,N,beta,gammar,gammam),tspan,y0); % Generate an SIRD model return t: the time span of the SIRD model and y: the fraction of each case(S I R D) in each timespan.
+[t,y]=ode45(@(t,y) odefcn(y,N,beta,gammar,gammam),tspan,y0); % Generate an SIRD model. t: the time span of the SIRD model and y: the fraction of each case(S I R D) in each timespan.
 ```
 
 ## **3. infer_reporting_delays_realdata.m**
 Uncover reporting delay with real data as described in the paper. 
 
-we operate with the infectious ${I}$, recovered  ${R}$, and deceased ${D}$ data. Each dataset is a time series of values, each corresponding to a specific observation {\color{blue} time}. For brevity, we refer to the triplet of infectious, recovered, and deceased data as $Y = \{I,R,D\}$. All values contained in the $Y$ time series are fractions of individuals found in the corresponding state on a specific day.
+In our statistical framework, we assume that the reporting delays correspond to three datasets, $Y = \{ I, R, D\}$, which are all characterized by the Polya-Aeppli distribution, albeit with different parameters  $\kappa=(\lambda_{I},\theta_{I},\lambda_{R},\theta_{R},\lambda_{D},\theta_{D})$. 
+With the choice of the Polya-Aeppli distribution, the reporting delays $\Delta \widetilde{Y}$ in our basic equation can be determined in parameterized form $\Delta\widetilde{Y}\kappa$.
+Given the incremental time series $\Delta \widetilde{Y}\kappa$, the cumulative time series $\widetilde{Y}\kappa$ are given by
+- $\widetilde{I}\kappa[k+1] = \widetilde{I}\kappa[k]  + \Delta \widetilde{I} \kappa[k] - \Delta \widetilde{R}\kappa[k] - \Delta \widetilde{D}\kappa[k]$
+- $\widetilde{R}\kappa[k+1] = \widetilde{R}\kappa[k]  + \Delta \widetilde{R} \kappa[k]$
+- $\widetilde{D}\kappa[k+1] = \widetilde{D}\kappa[k]  + \Delta \widetilde{D} \kappa[k]$
+for $k \geq 0$, and $\widetilde{I}\kappa[0]=\widetilde{R}\kappa[0]=\widetilde{D}\kappa[0]=0$. 
+
+The main assumption of our reporting delay removal framework is that the increments in new recovered $\Delta R$ and deceased $\Delta D$ individuals are proportional to the cumulative fraction of infectious individuals $I$.
+Therefore, we determine the "best" parameters $\bar{\kappa}$ that maximize the product of pairwise correlations among the three epidemic time series in $\widetilde{Y}\kappa$:
+$O_{b}(\widetilde{Y}\kappa) \equiv O_{b}(\widetilde{I}\kappa,\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa) = \rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa) \rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa) \rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$,
+where $\rho(X,Y)$ is the Pearson correlation coefficient between time series $X$ and $Y$. The objective function $O_{b}(\widetilde{Y}\kappa)$ reaches its maximum value of $1$ when all three pairwise correlations among the $\widetilde{I}\kappa$, $\Delta \widetilde{R}\kappa$ and $\Delta \widetilde{D}\kappa $ time series are 1, which we expect when recovery $\gamma_r$ and deceased $\gamma_d$ epidemic probabilities are constant. Due to the nature of the Pearson correlation coefficient, the objective function $O_{b}(\widetilde{Y}\kappa[k]) = O_{b}(\widetilde{Y}\kappa[k-T])$ is invariant under the constant time shift $T$ of the epidemic data. As a result, we can only infer the reporting delays up to a constant time shift $T$.
 
 In this repository, we present an example of uncovering the reporting delay in Spain. 
-
-
 
 ### Dependencies
 Matlab (version>=2012a)
