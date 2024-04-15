@@ -1,5 +1,4 @@
 function y = polyapdf(x,lambda,theta)
-%   neymanpdf: Neyman type A probability density function.
 %   Y = polyapdf(x,lambda,theta) returns the Polya-Aeppli probability density 
 %   function with parameters lambda and theta at the values in X.
 %   Note that the density function is zero unless X is an integer.
