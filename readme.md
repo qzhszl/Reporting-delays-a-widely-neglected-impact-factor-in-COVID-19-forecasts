@@ -34,9 +34,9 @@ Matlab (version>=2012a)
 ```
 L1 = 100;
 x = 1:100;
-r_D = 0.7;
+lambda_D = 0.7;
 theta_D = 0.5;
-P_D=polyapdf(x,r_D,theta_D)
+P_D=polyapdf(x,lambda_D,theta_D)
 ```
 
 ## **2. odefcn.m**
@@ -98,11 +98,29 @@ Matlab (version>=2012a)
 
 ### Usage
 #### Input
-- i_cnov.xlsx   %an excel file number of daily infected cases
-- r_cnov.xlsx   %number of daily recovered cases
-- d_cnov.xlsx   %number of daily deceased cases
+- i_cnov.xlsx   %Number of daily infected cases I. In the excel file, the first row is the date and the second row is the number of reported cases.
+- r_cnov.xlsx   %Number of daily recovered cases R. In the excel file, the first row is the date and the second row is the number of reported cases.
+- d_cnov.xlsx   %Number of daily deceased cases D. In the excel file, the first row is the date and the second row is the number of reported cases.
+These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
 #### Output
-- dydt: 4*1 vector dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D
 
+a = $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$
 
+## **3. SIRD_report_delay_synethic.m**
+Uncover reporting delay with generated synthetic datasets as described in the paper.
+The code generated $5$ SIRD epidemic model datasets with different epidemic parameters and added synthetic reported delays to the obtained times series.
+With the generated dataset with delays, the inferred model is executed to recover the generated SIRD model data without delays
+
+### Dependencies
+Matlab (version>=2012a)
+
+### Usage
+#### Input
+- i_cnov.xlsx   %Number of daily infected cases I. In the excel file, the first row is the date and the second row is the number of reported cases.
+- r_cnov.xlsx   %Number of daily recovered cases R. In the excel file, the first row is the date and the second row is the number of reported cases.
+- d_cnov.xlsx   %Number of daily deceased cases D. In the excel file, the first row is the date and the second row is the number of reported cases.
+These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
+#### Output
+
+a = $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$
 
