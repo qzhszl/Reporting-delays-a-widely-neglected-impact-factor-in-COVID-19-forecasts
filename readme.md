@@ -5,15 +5,15 @@
 
 This repository contains the codes to 1. generate a SIRD epidemic model, 2. uncover the reported delay for real data or generated synthetic data and 3. plot the evidence for reporting delays, which is described in the paper [Reporting delays: a widely neglecting impact factor in COVID-19 forecasts](https://arxiv.org/abs/2304.11863). If you use these codes, please cite the original paper and this repository. There are 6 main files in the repository:
 1. polyapdf.m:
-Polya-Aeppli probability density function
+Polya-Aeppli probability density function.
 2. odefcn.m:
-dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of an SIRD epidemic model
+dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of an SIRD epidemic model.
 3. infer_reporting_delays_realdata.m:
-Uncover reporting delay with real data(e.g. Spain)
+Uncover reporting delay with real data(e.g. Spain).
 4. SIRD_report_delay_synethic.m:
-Uncover reporting delay with generated synthetic datasets
+Uncover reporting delay with generated synthetic datasets.
 5. Camp_Scatter.py:
-Plot the relation between I, delta R and delta D
+Plot the relation between I, delta R and delta D.
 6. correlation.m:
 Plot reported I, delta R and delta D with the change of Day.
 
@@ -24,11 +24,11 @@ Matlab (version>=2012a)
 
 ### Usage
 #### Parameters
-- x: 1*n vector, where x(i)=i, i is an integer from 1 to n
-- lambda: lambda>0
-- theta: 0 <= theta <=1 
+- x: 1*n vector, where x(i)=i, i is an integer from 1 to n.
+- lambda: lambda>0.
+- theta: 0 <= theta <=1.
 #### Output
-- y: 1*n vector with the Polya-Aeppli probability density function
+- y: 1*n vector with the Polya-Aeppli probability density function.
 
 ### Examples
 ```
@@ -58,11 +58,11 @@ Matlab (version>=2012a)
 #### Parameters
 - y: 1*4 vector, in the example below, y0 contains the initial fractions cases(i.e.S I R D)
 - N: normalized parameter(default N = 1). If the input in y is not a fraction but not the exact number of cases, then we let N equal the total size of the dataset, including all the S I R D data.
-- beta: infection rate
-- gammar: recovery rate
-- gammam: deseased rate
+- beta: infection rate.
+- gammar: recovery rate.
+- gammam: deseased rate.
 #### Output
-- dydt: 4*1 vector dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D
+- dydt: 4*1 vector dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D.
 
 ### Examples
 ```
@@ -106,19 +106,20 @@ These three excel files should have the same dimension, i.e. for a specific date
 
 a = $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$
 
-## **3. SIRD_report_delay_synethic.m**
+## **4. SIRD_report_delay_synethic.m**
 Uncover reporting delay with generated synthetic datasets as described in the paper.
-The code generated $5$ SIRD epidemic model datasets with different epidemic parameters and added synthetic reported delays to the obtained times series.
-With the generated dataset with delays, the inferred model is executed to recover the generated SIRD model data without delays
+The code generated $k$ SIRD epidemic model datasets with different epidemic parameters and added synthetic reported delays to the obtained times series.
+With the generated dataset with delays, the inferred model is executed to recover the generated SIRD model data without delays.
 
 ### Dependencies
 Matlab (version>=2012a)
 
 ### Usage
-#### Input
-- i_cnov.xlsx   %Number of daily infected cases I. In the excel file, the first row is the date and the second row is the number of reported cases.
-- r_cnov.xlsx   %Number of daily recovered cases R. In the excel file, the first row is the date and the second row is the number of reported cases.
-- d_cnov.xlsx   %Number of daily deceased cases D. In the excel file, the first row is the date and the second row is the number of reported cases.
+#### Parameters
+- beta: infection rate of the SIRD model, modify line 10 if you want to change beta.
+- gammar: infection rate of the SIRD model, modify line 11 if you want to change gammar.
+- gammam: infection rate of the SIRD model, modify line 12 if you want to change gammam.
+- knum: number of generated SIRD epidemic models, modify line 39 if you want to change knum
 These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
 #### Output
 
