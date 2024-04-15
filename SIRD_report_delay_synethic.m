@@ -1,7 +1,7 @@
 clear,clc 
 %SIRD model-sampling-based sensitivity analysis
-% this .m generate 5 SIRD epidemic model datasets and added synthetic reported delays to obtained times series
-% With the generate dataset with delays, the inferred model are exectuded to recover the
+% this .m generates 5 SIRD epidemic model datasets and added synthetic reported delays to obtained times series
+% With the generated dataset with delays, the inferred model is executed to recover the
 % generated SIRD model data without delays
 %--------------------------------------------------------------------------
 % Generate an SIRD model, beta is the infection rate
@@ -17,7 +17,7 @@ y0=[99990/100000,10/100000,0,0];
 maker_idx = 1:10:length(t);
 
 % Daily reported: 10 timeslot in the generated SIRD model are regarded as one day.
-% Obtain daliy increased I,R,D as  I_daily, R_daily and D_daily
+% Obtain daily increased I,R,D as  I_daily, R_daily and D_daily
 y_daily=y(maker_idx,:);
 I_daily=zeros(101,1);
 R_daily=zeros(101,1);
