@@ -1,9 +1,9 @@
 1.polyapdf.m
 Neyman type A probability density function
-
+'''
 2.dydt=odefcn.m
 dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of an SIRD epidemic model
-
+'''
 3. infer_reporting_delays_realdata.m
 Uncover reporting delay with real data(e.g. Spain)
 
