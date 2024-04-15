@@ -1,6 +1,7 @@
+```ruby
 RHG Generator
 Network generator for random hyperbolic graphs (RHGs) with a latent representation in a hyperbolic ball of any dimension d+1 >= 2. The generator returns the network in edgelist format and additionally a list of the node coordinates if desired. The generator can be operated in 2 different modes: hybrid and model-based. In hybrid mode, the user provides the desired average degree, temperature and power-law exponent of the resulting network. In model-based mode, the user provides all network parameters. See Required Parameters for the full lists of the required parameters per mode.
-
+```ruby
 Dependencies
 C++ 2011 compiler or newer (std=c++11)
 Library gsl, GNU Scientific Library (version >= 1.16).
