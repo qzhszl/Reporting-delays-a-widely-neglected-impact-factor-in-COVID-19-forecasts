@@ -30,7 +30,7 @@ Matlab (version>=2012a)
 #### Output
 - y: 1*n vector with the Polya-Aeppli probability density function
 
-#### Examples
+### Examples
 ```
 L1 = 100;
 x = 1:100;
@@ -40,7 +40,16 @@ P_D=polyapdf(x,r_D,theta_D)
 ```
 
 ## **2. odefcn.m**
-dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of a SIRD epidemic model as described in the paper.
+Within the SIRD model, the population is split into four compartments: susceptible $S$, infectious $I$, recovered $R$, and deceased $D$. Compartment $S$ denotes the fraction of susceptible individuals, who can be infected by infectious individuals. Compartment $I$ denotes the fraction of individuals, who have been infected but have not recovered or are deceased. Compartments $R$ and $D$ are respectively the fractions of individuals, who have recovered or are deceased. The SIRD model assumes that recovered individuals become immune and cannot be infected by the virus in the future. Further, the SIRD model assumes the uniform mixing of the Infectious and Susceptible sub-populations. As a result, the discrete-time transitions between the compartments are governed by first-order difference time equations
+- $I[k+1]-I[k]  = \beta {I[k]S[k]}-(\gamma_r+\gamma_d){I[k]}$
+- $R[k+1]-R[k] = \gamma_{r} {I[k]}$
+- $D[k+1]-D[k] = \gamma_{d} {I[k]}$
+- ${S[k]} + {I[k]} + {R[k]} + {D[k]} = 1$
+where $\beta$, $\gamma_r$ and $\gamma_d$ are the infection, the recovery, and the deceased probabilities, respectively.
+
+dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of a SIRD epidemic model.
+
+A SIRD model described in the paper can be obtained utilizing this function, which is shown in the example below.
 
 ### Dependencies
 Matlab (version>=2012a)
@@ -55,7 +64,7 @@ Matlab (version>=2012a)
 #### Output
 - dydt: 4*1 vector dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D
 
-#### Examples
+### Examples
 ```
 beta=0.5;
 gammar=0.2;
@@ -63,27 +72,28 @@ gammam=0.05;
 N=1;
 tspan=0:0.1:100;
 y0=[99990/100000,10/100000,0,0];
-[t,y]=ode45(@(t,y) odefcn(y,N,beta,gammar,gammam),tspan,y0); % return t: the time span of the SIRD model and y: the fraction of each case(S I R D) in each timespan.
+[t,y]=ode45(@(t,y) odefcn(y,N,beta,gammar,gammam),tspan,y0); % Generate an SIRD model return t: the time span of the SIRD model and y: the fraction of each case(S I R D) in each timespan.
 ```
 
 ## **3. infer_reporting_delays_realdata.m**
-Uncover reporting delay with real data(e.g. Spain)
+Uncover reporting delay with real data as described in the paper. 
+
+we operate with the infectious ${I}$, recovered  ${R}$, and deceased ${D}$ data. Each dataset is a time series of values, each corresponding to a specific observation {\color{blue} time}. For brevity, we refer to the triplet of infectious, recovered, and deceased data as $Y = \{I,R,D\}$. All values contained in the $Y$ time series are fractions of individuals found in the corresponding state on a specific day.
+
+In this repository, we present an example of uncovering the reporting delay in Spain. 
+
+
 
 ### Dependencies
 Matlab (version>=2012a)
 
 ### Usage
-#### Parameters
-- infected0=xlsread('i_cnov.xlsx')   %number of daily infected cases
-- recovered0=xlsread('r_cnov.xlsx'); %number of daily recovered cases
-- death0=xlsread('d_cnov.xlsx');     %number of daily deceased cases
+#### Input
+- i_cnov.xlsx   %an excel file number of daily infected cases
+- r_cnov.xlsx   %number of daily recovered cases
+- d_cnov.xlsx   %number of daily deceased cases
 #### Output
 - dydt: 4*1 vector dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D
 
-#### Examples
-```
-- infected0=xlsread('i_cnov.xlsx')   %number of daily infected cases
-- recovered0=xlsread('r_cnov.xlsx'); %number of daily recovered cases
-- death0=xlsread('d_cnov.xlsx');     %number of daily deceased cases
-```
+
 
