@@ -84,6 +84,7 @@ For instance, $I[k]$ corresponds to the fraction of individuals who are infectio
 | $Y$:fractions of cases  | $\Delta Y$:fractions of new cases  |
 |$\widetilde{Y}$:fractions of reported cases  | $\Delta \widetilde{Y}$:fractions of reported new cases |
 |$\hat{Y}$:fractions of predicted cases  | $\Delta \hat{Y}$:fractions of predicted new cases  |
+
 Specifically, the daily epidemic reports are used to construct the fraction of infected individuals as $\tilde{I}[k] = \sum_{\ell}\left(\Delta \tilde{I} [\ell] - \Delta \tilde{R} [\ell] - \Delta \tilde{D} [\ell]\right)$, where $\ell=0:k-1$.
 
 In our statistical framework, we assume that the reporting delays correspond to three datasets, $Y = \{ I, R, D\}$, which are all characterized by the Polya-Aeppli distribution, albeit with different parameters  $\kappa=(\lambda_{I},\theta_{I},\lambda_{R},\theta_{R},\lambda_{D},\theta_{D})$. 
