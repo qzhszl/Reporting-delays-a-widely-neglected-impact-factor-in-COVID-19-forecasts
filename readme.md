@@ -153,7 +153,7 @@ Camp_Scatter.py and synethic_ID.xlsx should be in the same dictionary.
 
 
 
-## **5. correlation.m:**
+## **6. correlation.m:**
 Plot the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals with the change of time span (days), as shown in Fig.1 a,d,g,j of the paper. 
 In this repository, we present an example of plotting synthetic epidemic data generated with reported delays. Synthetic reporting delays were generated with the Polya-Aeppli distributions. 
 ### Dependencies
