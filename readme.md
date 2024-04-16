@@ -103,6 +103,7 @@ In this repository, we present an example of uncovering the reporting delay in S
 
 ### Dependencies
 Matlab (version>=2012a)
+
 infer_reporting_delays_realdata.m, odefcn.m, polyapdf.m, i_cnov.xlsx, r_cnov.xlsx and d_cnov.xlsx should be in the same dictionary. 
 
 ### Usage
@@ -123,6 +124,7 @@ With the generated dataset with delays, the inferred model is executed to recove
 
 ### Dependencies
 Matlab (version>=2012a)
+
 SIRD_report_delay_synethic.m, odefcn.m and polyapdf.m should be in the same dictionary. 
 
 ### Usage
@@ -158,6 +160,7 @@ Plot the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and de
 In this repository, we present an example of plotting synthetic epidemic data generated with reported delays. Synthetic reporting delays were generated with the Polya-Aeppli distributions. 
 ### Dependencies
 Matlab (version>=2012a)
+
 correlation.m Idelay.xlsx, Rdelay.xlsx and Ddelay.xlsx should be in the same dictionary. 
 
 ### Usage
