@@ -103,6 +103,7 @@ In this repository, we present an example of uncovering the reporting delay in S
 
 ### Dependencies
 Matlab (version>=2012a)
+infer_reporting_delays_realdata.m, odefcn.m, polyapdf.m, i_cnov.xlsx, r_cnov.xlsx and d_cnov.xlsx should be in the same dictionary. 
 
 ### Usage
 #### Input
@@ -122,6 +123,7 @@ With the generated dataset with delays, the inferred model is executed to recove
 
 ### Dependencies
 Matlab (version>=2012a)
+SIRD_report_delay_synethic.m, odefcn.m and polyapdf.m should be in the same dictionary. 
 
 ### Usage
 #### Parameters
@@ -140,28 +142,29 @@ Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\
 In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$ on synthetic epidemic data generated with reported delays. Synthetic reporting delays were generated with the Polya-Aeppli distributions. 
 ### Dependencies
 python3
+Camp_Scatter.py and synethic_ID.xlsx should be in the same dictionary. 
 
 ### Usage
 #### Input
-- synethic_ID.xlsx: Excel file. Two rows respectively includes two of the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
+- synethic_ID.xlsx: Excel file. Two rows respectively include two of the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
 
 #### Output
 - A scatter figure. In the provided example, the x-axis represents the $\tilde{I}$ while the y-axis is $\Delta\tilde{D}$.
 
 
 
-## **5. Camp_Scatter.py:**
-Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals, as shown in Fig.1 b, c, e, f, h, i, k, l of the paper. 
-
-In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$. 
+## **5. correlation.m:**
+Plot the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals with the change of time span (days), as shown in Fig.1 a,d,g,j of the paper. 
+In this repository, we present an example of plotting synthetic epidemic data generated with reported delays. Synthetic reporting delays were generated with the Polya-Aeppli distributions. 
 ### Dependencies
-python3
+Matlab (version>=2012a)
+correlation.m Idelay.xlsx, Rdelay.xlsx and Ddelay.xlsx should be in the same dictionary. 
 
 ### Usage
 #### Input
-- synethic_ID.xlsx
+- Idelay,xlsx: Excel file. The fractions of infected $\tilde{I}$ individuals. 
+- Rdelay,xlsx: Excel file. The fractions of recovered $\Delta \tilde{R}$ individuals.
+- Ddelay,xlsx: Excel file. The fractions of deceased $\Delta\tilde{D}$ individuals.
 
-These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
 #### Output
-- save saverandomnb.mat: A $k$*10 matrix, the first 6 elements in each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the inferred Polya-Aeppli probability distribution for the $k$-th SIRD model. The 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$. The 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
-- save trueparameters.mat: A $k$*6 matrix, each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the added Polya-Aeppli probability distribution for the $k$-th SIRD model
+- A figure: the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals with the change of time span (days).
