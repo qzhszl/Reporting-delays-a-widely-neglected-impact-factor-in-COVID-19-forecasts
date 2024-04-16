@@ -109,10 +109,10 @@ infer_reporting_delays_realdata.m, odefcn.m, polyapdf.m, i_cnov.xlsx, r_cnov.xls
 
 ### Usage
 #### Input
-- i_cnov.xlsx   %Number of daily infected cases I. In the excel file, the first row is the date and the second row is the number of reported cases.
-- r_cnov.xlsx   %Number of daily recovered cases R. In the excel file, the first row is the date and the second row is the number of reported cases.
-- d_cnov.xlsx   %Number of daily deceased cases D. In the excel file, the first row is the date and the second row is the number of reported cases.
-These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
+- i_cnov.xlsx   %Number of daily infected cases I. In the Excel file, the first row is the date, and the second row is the number of reported cases.
+- r_cnov.xlsx   %Number of daily recovered cases R. In the Excel file, the first row is the date and the second row is the number of reported cases.
+- d_cnov.xlsx   %Number of daily deceased cases D. In the Excel file, the first row is the date and the second row is the number of reported cases.
+These three Excel files should have the same dimension, i.e., for a specific date, the Excel should have all I, R and D data.
 #### Output
 
 a = $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$
@@ -130,13 +130,13 @@ SIRD_report_delay_synethic.m, odefcn.m and polyapdf.m should be in the same dict
 
 ### Usage
 #### Parameters
-- beta: infection rate of the SIRD model, modify line 10 if you want to change beta.
-- gammar: infection rate of the SIRD model, modify line 11 if you want to change gammar.
-- gammam: infection rate of the SIRD model, modify line 12 if you want to change gammam.
-- knum: number of generated SIRD epidemic models, modify line 39 if you want to change knum
+- beta: infection rate of the SIRD model. Modify line 10 if you want to change beta.
+- gammar: infection rate of the SIRD model. Modify line 11 if you want to change gammar.
+- gammam: infection rate of the SIRD model. Modify line 12 if you want to change gammam.
+- knum: number of generated SIRD epidemic models. Modify line 39 if you want to change knum
 These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
 #### Output
-- save saverandomnb.mat: A $k$*10 matrix, the first 6 elements in each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the inferred Polya-Aeppli probability distribution for the $k$-th SIRD model. The 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$. The 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
+- save saverandomnb.mat: A $k$*10 matrix, the first 6 elements in each row save the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the inferred Polya-Aeppli probability distribution for the $k$-th SIRD model. The 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$. The 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
 - save trueparameters.mat: A $k$*6 matrix, each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the added Polya-Aeppli probability distribution for the $k$-th SIRD model
 
 
@@ -152,7 +152,7 @@ Camp_Scatter.py and synethic_ID.xlsx should be in the same dictionary.
 - synethic_ID.xlsx: Excel file. Two rows respectively include two of the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
 
 #### Output
-- A scatter figure. In the provided example, the x-axis represents the $\tilde{I}$ while the y-axis is $\Delta\tilde{D}$.
+- A scatter figure. In the provided example, the x-axis represents $\tilde{I}$ while the y-axis is $\Delta\tilde{D}$.
 
 
 
@@ -166,9 +166,9 @@ correlation.m Idelay.xlsx, Rdelay.xlsx and Ddelay.xlsx should be in the same dic
 
 ### Usage
 #### Input
-- Idelay,xlsx: Excel file. The fractions of infected $\tilde{I}$ individuals. 
-- Rdelay,xlsx: Excel file. The fractions of recovered $\Delta \tilde{R}$ individuals.
-- Ddelay,xlsx: Excel file. The fractions of deceased $\Delta\tilde{D}$ individuals.
+- Idelay.xlsx: Excel file. The fractions of infected $\tilde{I}$ individuals. 
+- Rdelay.xlsx: Excel file. The fractions of recovered $\Delta \tilde{R}$ individuals.
+- Ddelay.xlsx: Excel file. The fractions of deceased $\Delta\tilde{D}$ individuals.
 
 #### Output
 - A figure: the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals with the change of time span (days).
