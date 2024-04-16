@@ -5,7 +5,7 @@
 
 This repository contains the codes to 1. generate a SIRD epidemic model, 2. uncover the reported delay for real data or generated synthetic data and 3. plot the evidence for reporting delays, which is described in the paper [Reporting delays: a widely neglecting impact factor in COVID-19 forecasts](https://arxiv.org/abs/2304.11863). If you use these codes, please cite the original paper and this repository. There are 6 main files in the repository:
 1. polyapdf.m:
-Polya-Aeppli probability density function.
+Return a Polya-Aeppli probability density function.
 2. odefcn.m:
 dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of an SIRD epidemic model.
 3. infer_reporting_delays_realdata.m:
@@ -46,7 +46,6 @@ Within the SIRD model, the population is split into four compartments: susceptib
 - $D[k+1]-D[k] = \gamma_{d} {I[k]}$
 - ${S[k]} + {I[k]} + {R[k]} + {D[k]} = 1$
 where $\beta$, $\gamma_r$ and $\gamma_d$ are the infection, the recovery, and the deceased probabilities, respectively.
-
 dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of a SIRD epidemic model.
 
 A SIRD model described in the paper can be obtained utilizing this function, which is shown in the example below.
@@ -78,6 +77,15 @@ y0=[99990/100000,10/100000,0,0];
 ## **3. infer_reporting_delays_realdata.m**
 Uncover reporting delay with real data as described in the paper. 
 
+For a SIRD model introduced in the paper and in **2. odefcn.m, we have the infectious ${I}$, recovered  ${R}$, and deceased ${D}$ data. Each dataset is a time series of values, each corresponding to a specific observation time. For brevity, we refer to the triplet of infectious, recovered, and deceased data as $Y = \{I,R,D\}$. All values contained in the $Y$ time series are fractions of individuals found in the corresponding state on a specific day.
+For instance, $I[k]$ corresponds to the fraction of individuals who are infectious on day $k$. Since COVID-19 reported data often is advertised in the form of changes in the number of epidemic cases, we find it convenient to introduce the daily changes in epidemic data as $\Delta Y[k]$ for $Y = \{I,R,D\}$.} Further, in this work, we operate with reported epidemic data $\tilde{Y}$ and inferred data $\hat{Y}$. Since reported and inferred data are expected to differ from the true data $Y$, we need to distinguish the three. The notation is shown in the table below.
+| Cumulative Quantities  | Quantity Increments |
+| ------------- | ------------- |
+| $Y$:fractions of cases  | $\Delta Y$:fractions of new cases  |
+|$\widetilde{Y}$:fractions of reported cases  | $\Delta \widetilde{Y}$:fractions of reported new cases |
+|$\hat{Y}$:fractions of predicted cases  | $\Delta \hat{Y}$:fractions of predicted new cases  |
+Specifically, the daily epidemic reports are used to construct the fraction of infected individuals as $\tilde{I}[k] = \sum_{\ell}\left(\Delta \tilde{I} [\ell] - \Delta \tilde{R} [\ell] - \Delta \tilde{D} [\ell]\right)$, where $\ell=0:k-1$.
+
 In our statistical framework, we assume that the reporting delays correspond to three datasets, $Y = \{ I, R, D\}$, which are all characterized by the Polya-Aeppli distribution, albeit with different parameters  $\kappa=(\lambda_{I},\theta_{I},\lambda_{R},\theta_{R},\lambda_{D},\theta_{D})$. 
 With the choice of the Polya-Aeppli distribution, the reporting delays $\Delta \widetilde{Y}$ in our basic equation can be determined in parameterized form $\Delta\widetilde{Y}\kappa$.
 Given the incremental time series $\Delta \widetilde{Y}\kappa$, the cumulative time series $\widetilde{Y}\kappa$ are given by
@@ -89,7 +97,7 @@ for $k \geq 0$, and $\widetilde{I}\kappa[0]=\widetilde{R}\kappa[0]=\widetilde{D}
 The main assumption of our reporting delay removal framework is that the increments in new recovered $\Delta R$ and deceased $\Delta D$ individuals are proportional to the cumulative fraction of infectious individuals $I$.
 Therefore, we determine the "best" parameters $\bar{\kappa}$ that maximize the product of pairwise correlations among the three epidemic time series in $\widetilde{Y}\kappa$:
 $O_{b}(\widetilde{Y}\kappa) \equiv O_{b}(\widetilde{I}\kappa,\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa) = \rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa) \rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa) \rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$,
-where $\rho(X,Y)$ is the Pearson correlation coefficient between time series $X$ and $Y$. The objective function $O_{b}(\widetilde{Y}\kappa)$ reaches its maximum value of $1$ when all three pairwise correlations among the $\widetilde{I}\kappa$, $\Delta \widetilde{R}\kappa$ and $\Delta \widetilde{D}\kappa $ time series are 1, which we expect when recovery $\gamma_r$ and deceased $\gamma_d$ epidemic probabilities are constant. Due to the nature of the Pearson correlation coefficient, the objective function $O_{b}(\widetilde{Y}\kappa[k]) = O_{b}(\widetilde{Y}\kappa[k-T])$ is invariant under the constant time shift $T$ of the epidemic data. As a result, we can only infer the reporting delays up to a constant time shift $T$.
+where $\rho(X,Y)$ is the Pearson correlation coefficient between time series $X$ and $Y$. The objective function $O_{b}(\widetilde{Y}\kappa)$ reaches its maximum value of $1$ when all three pairwise correlations among the $\widetilde{I}\kappa$, $\Delta \widetilde{R}\kappa$ and $\Delta \widetilde{D}\kappa$ time series are 1, which we expect when recovery $\gamma_r$ and deceased $\gamma_d$ epidemic probabilities are constant. Due to the nature of the Pearson correlation coefficient, the objective function $O_{b}(\widetilde{Y}\kappa[k]) = O_{b}(\widetilde{Y}\kappa[k-T])$ is invariant under the constant time shift $T$ of the epidemic data. As a result, we can only infer the reporting delays up to a constant time shift $T$.
 
 In this repository, we present an example of uncovering the reporting delay in Spain. 
 
@@ -108,6 +116,7 @@ a = $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$
 
 ## **4. SIRD_report_delay_synethic.m**
 Uncover reporting delay with generated synthetic datasets as described in the paper.
+
 The code generated $k$ SIRD epidemic model datasets with different epidemic parameters and added synthetic reported delays to the obtained times series.
 With the generated dataset with delays, the inferred model is executed to recover the generated SIRD model data without delays.
 
@@ -125,3 +134,18 @@ These three excel files should have the same dimension, i.e. for a specific date
 - save saverandomnb.mat: A $k$*10 matrix, the first 6 elements in each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the inferred Polya-Aeppli probability distribution for the $k$-th SIRD model. The 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$. The 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
 - save trueparameters.mat: A $k$*6 matrix, each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the added Polya-Aeppli probability distribution for the $k$-th SIRD model
 
+## **5. Camp_Scatter.py:**
+Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals, as shown in Fig.1 b, c, e, f, h, i, k, l of the paper. 
+
+In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$. 
+### Dependencies
+python3
+
+### Usage
+#### Input
+- synethic_ID.xlsx
+
+These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
+#### Output
+- save saverandomnb.mat: A $k$*10 matrix, the first 6 elements in each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the inferred Polya-Aeppli probability distribution for the $k$-th SIRD model. The 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$. The 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
+- save trueparameters.mat: A $k$*6 matrix, each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the added Polya-Aeppli probability distribution for the $k$-th SIRD model
