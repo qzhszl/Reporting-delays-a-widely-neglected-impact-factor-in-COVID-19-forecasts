@@ -137,13 +137,13 @@ These three excel files should have the same dimension, i.e. for a specific date
 
 ## **5. Camp_Scatter.py:**
 Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals, as shown in Fig.1 b, c, e, f, h, i, k, l of the paper. 
-In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$ on synthetic epidemic data generated with the SIRD model by solving Eq.~[\ref{eqn:discrete_SIRD_model}] with parameters $\beta = 0.5$, $\gamma_{r} = 0.2$, $\gamma_{d} = 0.05$, $R[0]=D[0]=0$, $I[0] = 10^{-6}$, and $S[0] = 1-I[0]$. Synthetic reporting delays were generated with the P\'{o}lya-Aeppli distributions . 
+In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$ on synthetic epidemic data generated with reported delays. Synthetic reporting delays were generated with the Polya-Aeppli distributions. 
 ### Dependencies
 python3
 
 ### Usage
 #### Input
-- synethic_ID.xlsx
+- synethic_ID.xlsx: Excel file. Two rows respectively includes two of the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
 
 #### Output
 - A scatter figure. In the provided example, the x-axis represents the $\tilde{I}$ while the y-axis is $\Delta\tilde{D}$.
