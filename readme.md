@@ -77,7 +77,7 @@ y0=[99990/100000,10/100000,0,0];
 ## **3. infer_reporting_delays_realdata.m**
 Uncover reporting delay with real data as described in the paper. 
 
-For a SIRD model introduced in the paper and in **2. odefcn.m, we have the infectious ${I}$, recovered  ${R}$, and deceased ${D}$ data. Each dataset is a time series of values, each corresponding to a specific observation time. For brevity, we refer to the triplet of infectious, recovered, and deceased data as $Y = \{I,R,D\}$. All values contained in the $Y$ time series are fractions of individuals found in the corresponding state on a specific day.
+For a SIRD model introduced in the paper and in **2. odefcn.m, we have the infectious ${I}$, recovered  ${R}$, and deceased ${D}$ data. Each dataset is a time series of values, each corresponding to a specific observation time. For brevity, we refer to the triplet of infectious, recovered, and deceased data as $Y = \{I,R,D\}$. **All values contained in the $Y$ time series are fractions of individuals found in the corresponding state on a specific day.**
 For instance, $I[k]$ corresponds to the fraction of individuals who are infectious on day $k$. Since COVID-19 reported data often is advertised in the form of changes in the number of epidemic cases, we find it convenient to introduce the daily changes in epidemic data as $\Delta Y[k]$ for $Y = \{I,R,D\}$.} Further, in this work, we operate with reported epidemic data $\tilde{Y}$ and inferred data $\hat{Y}$. Since reported and inferred data are expected to differ from the true data $Y$, we need to distinguish the three. The notation is shown in the table below.
 | Cumulative Quantities  | Quantity Increments |
 | ------------- | ------------- |
@@ -133,6 +133,22 @@ These three excel files should have the same dimension, i.e. for a specific date
 #### Output
 - save saverandomnb.mat: A $k$*10 matrix, the first 6 elements in each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the inferred Polya-Aeppli probability distribution for the $k$-th SIRD model. The 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$. The 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
 - save trueparameters.mat: A $k$*6 matrix, each row saves the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the added Polya-Aeppli probability distribution for the $k$-th SIRD model
+
+
+## **5. Camp_Scatter.py:**
+Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals, as shown in Fig.1 b, c, e, f, h, i, k, l of the paper. 
+In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$ on synthetic epidemic data generated with the SIRD model by solving Eq.~[\ref{eqn:discrete_SIRD_model}] with parameters $\beta = 0.5$, $\gamma_{r} = 0.2$, $\gamma_{d} = 0.05$, $R[0]=D[0]=0$, $I[0] = 10^{-6}$, and $S[0] = 1-I[0]$. Synthetic reporting delays were generated with the P\'{o}lya-Aeppli distributions . 
+### Dependencies
+python3
+
+### Usage
+#### Input
+- synethic_ID.xlsx
+
+#### Output
+- A scatter figure. In the provided example, the x-axis represents the $\tilde{I}$ while the y-axis is $\Delta\tilde{D}$.
+
+
 
 ## **5. Camp_Scatter.py:**
 Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals, as shown in Fig.1 b, c, e, f, h, i, k, l of the paper. 
