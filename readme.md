@@ -111,9 +111,9 @@ infer_reporting_delays_realdata.m, odefcn.m, polyapdf.m, i_cnov.xlsx, r_cnov.xls
 
 ### Usage
 #### Input
-- i_cnov.xlsx   %Number of daily infected cases I time series. In the Excel file, the first row is the date, and the second row is the number of reported cases.
-- r_cnov.xlsx   %Number of daily recovered cases R time series. In the Excel file, the first row is the date and the second row is the number of reported cases.
-- d_cnov.xlsx   %Number of daily deceased cases D time series. In the Excel file, the first row is the date and the second row is the number of reported cases.
+- i_cnov.xlsx: Number of daily infected cases I time series. In the Excel file, the first row is the date, and the second row is the number of reported cases.
+- r_cnov.xlsx: Number of daily recovered cases R time series. In the Excel file, the first row is the date and the second row is the number of reported cases.
+- d_cnov.xlsx: Number of daily deceased cases D time series. In the Excel file, the first row is the date and the second row is the number of reported cases.
 These three Excel files should have the same dimension, i.e., for a specific date, the Excel should have all I, R and D data.
 #### Output
 
