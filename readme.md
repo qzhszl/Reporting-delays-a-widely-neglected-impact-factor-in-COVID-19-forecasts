@@ -57,8 +57,8 @@ Matlab (version>=2012a)
 
 ### Usage
 #### Parameters
-- y: 1*4 vector, in the example below, y0 contains the initial fractions cases(i.e.S I R D)
-- N: normalized parameter(default N = 1). If the input in y is not a fraction but not the exact number of cases, then we let N equal the total size of the dataset, including all the S I R D data.
+- y: 1*4 vector. In the example below, y0 contains the initial fractions cases(i.e. S I R D)
+- N: normalized parameter (default N = 1). If the input in y is not a fraction but the exact number of cases (e.g. the number of infected individuals), then we let N equal the total size of the dataset, i.e., the sum of the number of individuals in S, I, R and D state.
 - beta: infection rate.
 - gammar: recovery rate.
 - gammam: deseased rate.
