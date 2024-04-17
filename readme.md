@@ -111,9 +111,9 @@ infer_reporting_delays_realdata.m, odefcn.m, polyapdf.m, i_cnov.xlsx, r_cnov.xls
 
 ### Usage
 #### Input
-- i_cnov.xlsx   %Number of daily infected cases I. In the Excel file, the first row is the date, and the second row is the number of reported cases.
-- r_cnov.xlsx   %Number of daily recovered cases R. In the Excel file, the first row is the date and the second row is the number of reported cases.
-- d_cnov.xlsx   %Number of daily deceased cases D. In the Excel file, the first row is the date and the second row is the number of reported cases.
+- i_cnov.xlsx   %Number of daily infected cases I time series. In the Excel file, the first row is the date, and the second row is the number of reported cases.
+- r_cnov.xlsx   %Number of daily recovered cases R time series. In the Excel file, the first row is the date and the second row is the number of reported cases.
+- d_cnov.xlsx   %Number of daily deceased cases D time series. In the Excel file, the first row is the date and the second row is the number of reported cases.
 These three Excel files should have the same dimension, i.e., for a specific date, the Excel should have all I, R and D data.
 #### Output
 
@@ -151,7 +151,7 @@ Camp_Scatter.py and synethic_ID.xlsx should be in the same dictionary.
 
 ### Usage
 #### Input
-- synethic_ID.xlsx: Excel file. Two rows respectively include two of the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
+- synethic_ID.xlsx: Excel file. Two rows respectively include two of the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals time series. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
 
 #### Output
 - A scatter figure. In the provided example, the x-axis represents $\tilde{I}$ while the y-axis is $\Delta\tilde{D}$.
@@ -168,9 +168,9 @@ correlation.m Idelay.xlsx, Rdelay.xlsx and Ddelay.xlsx should be in the same dic
 
 ### Usage
 #### Input
-- Idelay.xlsx: Excel file. The fractions of infected $\tilde{I}$ individuals. 
-- Rdelay.xlsx: Excel file. The fractions of recovered $\Delta \tilde{R}$ individuals.
-- Ddelay.xlsx: Excel file. The fractions of deceased $\Delta\tilde{D}$ individuals.
+- Idelay.xlsx: Excel file. The fractions of infected $\tilde{I}$ individuals time series. 
+- Rdelay.xlsx: Excel file. The fractions of recovered $\Delta \tilde{R}$ individuals time series.
+- Ddelay.xlsx: Excel file. The fractions of deceased $\Delta\tilde{D}$ individuals time series.
 
 #### Output
 - A figure: the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals with the change of time span (days).
