@@ -122,7 +122,7 @@ a = $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$
 ## **4. SIRD_report_delay_synethic.m**
 Uncover reporting delay with generated synthetic datasets as described in the paper.
 
-The code generated $k$ SIRD epidemic model datasets with different epidemic parameters and added synthetic reported delays to the obtained times series.
+The code generated $k$ SIRD epidemic model datasets with epidemic parameters input and added synthetic reported delays to the obtained times series.
 With the generated dataset with delays, the inferred model is executed to recover the generated SIRD model data without delays.
 
 ### Dependencies
