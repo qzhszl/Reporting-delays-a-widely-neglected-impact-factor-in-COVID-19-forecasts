@@ -57,13 +57,13 @@ Matlab (version>=2012a)
 
 ### Usage
 #### Parameters
-- y: 1*4 vector. In the example below, y0 contains the initial fractions cases(i.e. S I R D)
+- y: 1*4 vector. In the example below, y0 contains the initial fractions cases (i.e. S I R D).
 - N: normalized parameter (default N = 1). If the input elements in y are not fractions, but the exact number of cases (e.g. the number of infected individuals), then we let N equal the total size of the dataset, i.e., the sum of the number of individuals in S, I, R and D state.
 - beta: infection rate.
 - gammar: recovery rate.
 - gammam: deseased rate.
 #### Output
-- dydt: 4*1 vector dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D.
+- dydt: 4*1 vector. dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D.
 
 ### Examples
 ```
@@ -73,7 +73,7 @@ gammam=0.05;
 N=1;
 tspan=0:0.1:100;
 y0=[99990/100000,10/100000,0,0];
-[t,y]=ode45(@(t,y) odefcn(y,N,beta,gammar,gammam),tspan,y0); % Generate an SIRD model. t: the time span of the SIRD model and y: the fraction of each case(S I R D) in each timespan.
+[t,y]=ode45(@(t,y) odefcn(y,N,beta,gammar,gammam),tspan,y0); % Generate an SIRD model. t: the time span of the SIRD model and y: the fraction of each case(S I R D) for each timespan.
 ```
 
 ## **3. infer_reporting_delays_realdata.m**
