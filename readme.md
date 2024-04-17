@@ -13,9 +13,9 @@ Uncover reporting delay with real data(e.g. Spain).
 4. SIRD_report_delay_synethic.m:
 Uncover reporting delay with generated synthetic datasets.
 5. Camp_Scatter.py:
-Plot the relation between I, delta R and delta D.
+Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals.
 6. correlation.m:
-Plot reported I, delta R and delta D with the change of Day.
+Plot the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals with the change of time span (days).
 
 ## **1. polyapdf.m**
 Return the Polya-Aeppli probability density function as described in the paper. Two parameters **lambda** and **theta** determine the mean value and variance.
