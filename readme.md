@@ -45,10 +45,12 @@ Within the SIRD model, the population is split into four compartments: susceptib
 - $R[k+1]-R[k] = \gamma_{r} {I[k]}$
 - $D[k+1]-D[k] = \gamma_{d} {I[k]}$
 - ${S[k]} + {I[k]} + {R[k]} + {D[k]} = 1$
+
 where $\beta$, $\gamma_r$ and $\gamma_d$ are the infection, the recovery, and the deceased probabilities, respectively.
+
 dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of a SIRD epidemic model.
 
-A SIRD model described in the paper can be obtained utilizing this function, which is shown in the example below.
+A SIRD model(infectious $I[k]$, recovered $R[k]$, and deceased $D[k]$ time series epidemic data) described in the paper can be obtained utilizing this function, which is shown in the example below.
 
 ### Dependencies
 Matlab (version>=2012a)
