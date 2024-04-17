@@ -18,7 +18,8 @@ Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\
 Plot the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals with the change of time span (days).
 
 ## **1. polyapdf.m**
-Return the Polya-Aeppli probability density function as described in the paper. Two parameters **lambda** and **theta** determine the mean value and variance.
+Return the Polya-Aeppli probability density function as described in the paper. 
+Two parameters **lambda** and **theta** determine the mean value $E[T]=\lambda/\theta$ and variance $Var[T]=\lambda (2-\theta)/\theta^2$
 ### Dependencies
 Matlab (version>=2012a)
 
