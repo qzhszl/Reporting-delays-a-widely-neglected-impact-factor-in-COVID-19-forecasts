@@ -32,7 +32,6 @@ Matlab (version>=2012a)
 
 ### Examples
 ```
-L1 = 100;
 x = 1:100;
 lambda_D = 0.7;
 theta_D = 0.5;
