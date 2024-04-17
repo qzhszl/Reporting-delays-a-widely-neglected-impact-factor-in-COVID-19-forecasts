@@ -28,7 +28,7 @@ Matlab (version>=2012a)
 - lambda: lambda>0.
 - theta: 0 <= theta <=1.
 #### Output
-- y: 1*n vector with the Polya-Aeppli probability density function.
+- y: 1*n vector. Polya-Aeppli probability density function with the input lambda and theta.
 
 ### Examples
 ```
