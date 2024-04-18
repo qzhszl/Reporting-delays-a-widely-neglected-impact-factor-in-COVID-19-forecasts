@@ -137,7 +137,6 @@ SIRD_report_delay_synethic.m, odefcn.m and polyapdf.m should be in the same dict
 - gammar: recovery rate of the SIRD model. Modify line 11 if you want to change gammar.
 - gammam: deceased rate of the SIRD model. Modify line 12 if you want to change gammam.
 - knum: number of generated SIRD epidemic models. Modify line 39 if you want to change knum.
-These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
 #### Output
 - saverandomnb.mat: A $k$*10 matrix. In each row, the first 6 elements save the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the Polya-Aeppli distribution for the inferred delays added in $k$-th SIRD model; the 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$; the 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
 - trueparameters.mat: A $k$*6 matrix. Each row saves the parameters of the added delays, i.e. $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of Polya-Aeppli distribution, for the $k$-th generated SIRD model.
