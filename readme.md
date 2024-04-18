@@ -50,8 +50,8 @@ where $\beta$, $\gamma_r$ and $\gamma_d$ are the infection, the recovery, and th
 
 dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of a SIRD epidemic model.
 
-A SIRD model(infectious $I[k]$, recovered $R[k]$, and deceased $D[k]$ time series epidemic data) described in the paper can be obtained utilizing this function, which is shown in the example below.
-
+**A SIRD model(infectious $I[k]$, recovered $R[k]$, and deceased $D[k]$ time series epidemic data) described in the paper can be obtained utilizing this function, which is shown in the example below.
+**
 ### Dependencies
 Matlab (version>=2012a)
 
@@ -61,7 +61,7 @@ Matlab (version>=2012a)
 - N: normalized parameter (default N = 1). If the input elements in y are not fractions, but the exact number of cases (e.g. the number of infected individuals), then we let N equal the total size of the dataset, i.e., the sum of the number of individuals in S, I, R and D state.
 - beta: infection rate.
 - gammar: recovery rate.
-- gammam: deseased rate.
+- gammam: deceased rate.
 #### Output
 - dydt: 4*1 vector. dydt(1) contains the derivative of S; dydt(2) contains the derivative of I; dydt(3) contains the derivative of R; dydt(4) contains the derivative of D.
 
@@ -134,25 +134,25 @@ SIRD_report_delay_synethic.m, odefcn.m and polyapdf.m should be in the same dict
 ### Usage
 #### Parameters
 - beta: infection rate of the SIRD model. Modify line 10 if you want to change beta.
-- gammar: infection rate of the SIRD model. Modify line 11 if you want to change gammar.
-- gammam: infection rate of the SIRD model. Modify line 12 if you want to change gammam.
-- knum: number of generated SIRD epidemic models. Modify line 39 if you want to change knum
+- gammar: recovery rate of the SIRD model. Modify line 11 if you want to change gammar.
+- gammam: deceased rate of the SIRD model. Modify line 12 if you want to change gammam.
+- knum: number of generated SIRD epidemic models. Modify line 39 if you want to change knum.
 These three excel files should have the same dimension, i.e. for a specific date, the excel should have all I, R and D data.
 #### Output
-- save saverandomnb.mat: A $k$*10 matrix, the first 6 elements in each row save the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the inferred Polya-Aeppli probability distribution for the $k$-th SIRD model. The 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$. The 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
-- save trueparameters.mat: A $k$*6 matrix, each row saves the parameters of the added delays, i.e. $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of Polya-Aeppli distribution, for the $k$-th generated SIRD model.
+- saverandomnb.mat: A $k$*10 matrix. In each row, the first 6 elements save the parameters $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of the Polya-Aeppli distribution for the inferred delays added in $k$-th SIRD model; the 7-th element saves the inferred $O_{b}(\widetilde{Y}\kappa)$; the 8th, 9th and 10th elements respectively save the Pearson correlation coefficients $\rho (\widetilde{I}\kappa, \Delta \widetilde{D}\kappa)$, $\rho (\widetilde{I}\kappa, \Delta \widetilde{R}\kappa)$ and $\rho (\Delta \widetilde{R}\kappa, \Delta \widetilde{D}\kappa)$.
+- trueparameters.mat: A $k$*6 matrix. Each row saves the parameters of the added delays, i.e. $\[\theta_D, \theta_I, \theta_R, \lambda_D, \lambda_I, \lambda_R\]$ of Polya-Aeppli distribution, for the $k$-th generated SIRD model.
 
 
 ## **5. Camp_Scatter.py:**
-Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals, as shown in Fig.1 b, c, e, f, h, i, k, l of the paper. 
-In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$ on synthetic epidemic data generated with reported delays. Synthetic reporting delays were generated with the Polya-Aeppli distributions. 
+Plot the correlation between the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals time series, as shown in Fig.1 b, c, e, f, h, i, k, l of the paper. 
+In this repository, we present an example of plotting the correlation between infected $\tilde{I}$ and deceased $\Delta\tilde{D}$ from synthetic epidemic data generated with reported delays. Synthetic reporting delays were generated with the Polya-Aeppli distributions. 
 ### Dependencies
 python3
 Camp_Scatter.py and synethic_ID.xlsx should be in the same dictionary. 
 
 ### Usage
 #### Input
-- synethic_ID.xlsx: Excel file. Two rows respectively include two of the fractions of infected $\tilde{I}$, recovered $\Delta \tilde{R}$, and deceased $\Delta\tilde{D}$ individuals time series. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
+- synethic_ID.xlsx: Excel file. Two rows respectively include two different fractions of $Y = \{I,R,D\}$ individuals time series. In our provided example, the first row is $\tilde{I}$ while the second row is $\Delta\tilde{D}$.
 
 #### Output
 - A scatter figure. In the provided example, the x-axis represents $\tilde{I}$ while the y-axis is $\Delta\tilde{D}$.
