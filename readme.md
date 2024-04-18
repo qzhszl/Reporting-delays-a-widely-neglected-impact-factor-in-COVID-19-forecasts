@@ -50,8 +50,7 @@ where $\beta$, $\gamma_r$ and $\gamma_d$ are the infection, the recovery, and th
 
 dydt=odefcn(y,N,beta,gammar,gammam) returns the differential equations of a SIRD epidemic model.
 
-**A SIRD model(infectious $I[k]$, recovered $R[k]$, and deceased $D[k]$ time series epidemic data) described in the paper can be obtained utilizing this function, which is shown in the example below.
-**
+**A SIRD model(infectious $I[k]$, recovered $R[k]$, and deceased $D[k]$ time series epidemic data) described in the paper can be obtained utilizing this function, which is shown in the example below.**
 ### Dependencies
 Matlab (version>=2012a)
 
